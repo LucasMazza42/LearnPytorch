@@ -1,0 +1,45 @@
+
+Video 1: 
+But what is a neural network?
+
+- Multilayer perceptron 
+    - What is a nueron
+        - A thing that holds a number between 0 and 1
+        - number inside of the nueron is called the activation 
+    - activation   
+        - how positive is the weighted sum 
+        - typically a sigmoid function is used but not RELU
+    - bias
+        - tells you how high the sum needs to be before the nueron begins to get 
+        meaningly active 
+    - ReLU(a) = max(0, a)
+        - rectified liner unit 
+        - Inactive up to a threshold and active after specific threshold
+        - if the node output is positive then output will become the value itself
+        - if the node output is negative it will become 0 
+    - What is the purpose of an activation function: 
+        - help a model account for interaction effects 
+        - helps the model account for non-linear effects 
+            - non-linear if the slope isn't constant 
+            - slope tends to change between the different nodes 
+
+Video 2: 
+Gradient descent, how nueral networks learn
+
+- Show the model alot of data and train the structure 
+    - hopefully then the network can learn to generalize 
+    - define a cost function 
+        - square difference between each output and the actual 
+        - will be larger when the network is more lost 
+    - start with a random input, and then try to find the minimum 
+        - step in the direction where the error becomes less 
+        - which direcetion should we step as to decrease the output of the function fastest
+        - negative gradient gives the direction 
+        - repeat 
+        - will create a better performance on all of the samples 
+    - backpropogation 
+        - a network learning is means minimizing the cost function 
+    - gradient descent 
+        - a way to converge toward a local minimum 
+    - what nudges to the weights and biases matter the most to the cost function 
+    
