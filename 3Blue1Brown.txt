@@ -22,6 +22,9 @@ But what is a neural network?
         - helps the model account for non-linear effects 
             - non-linear if the slope isn't constant 
             - slope tends to change between the different nodes 
+        - bias: 
+            - allows the activation function to be non-zero even when the sum
+            of weighted inputs is zero
 
 Video 2: 
 Gradient descent, how nueral networks learn
@@ -42,4 +45,90 @@ Gradient descent, how nueral networks learn
     - gradient descent 
         - a way to converge toward a local minimum 
     - what nudges to the weights and biases matter the most to the cost function 
-    
+    - seek out changes that are proportional to the weight 
+
+Backpropogation
+- Follows chain rule and product rule in calculus 
+- Goal is to compute the partial derivatives dC/dw and dC/db
+of the cost function C with respect to any weight w or bias backpropogation
+- backward propagation of errors
+
+1. Compute the Loss
+2. Backward Pass
+    - compute the direction of steepest increase in the loss using gradient descent
+3. Chain Rule and Gradients
+    - For a given layer in the network, the gradient of the loss with respect to the weights 
+        is computed using the chain rule
+    - The gradients are computed layer by layer moving backwards through the network 
+
+4. Backpropogation steps: 
+
+    a. output layer
+        - compute the gradient of the loss with respect to the output of the output layer 
+        - compute the gradients of the loss with respect to the weights and biases 
+    b. hidden layer
+        - propagate the gradients backwards through the network 
+        - At each hidden layer, compute the gradient of the loss with respect to the 
+            output of the layer, then the gradient with respect to the weighted sum of inputs and biases,
+            and finally the gradients with respect to the weights and biases.
+5. Update the weights and biases: 
+    - the computed gradients are used to update the weights and biases 
+    - optimization alg determines the size and the direction of the updates 
+    - learning rate controls the step size during optimization
+6. Repeat multiple epochs 
+    - basically repeat this process for multiple iterations 
+
+7. Batch Gradient Descent vs. Stochaastic Gradient Descent: 
+    - often applied to mini-batches of date - mini batch gradient descnet 
+    - Stochaastic, each training example is considered a mini-batch 
+
+Process: 
+
+1. Forward Pass 
+    - input data is fed into the network 
+    - each layer will perform the following steps
+        - Linear transformation: The weighted sum of inputs plus
+            a bias term is computed 
+        - Activation function: the result of the linear transformation 
+            is passed through an activation function to introduce non-linearity
+2. Compute Loss
+    - output of the nueral network is compared to the actual target values 
+        and the loss is calculated
+    - common loss functions inclde MSE and cross entropy 
+3. Backwards pass - backpropogation
+    - minimize the loss by adjusting the weights and biases in the network
+    - start from the output layer and move backwards through the network 
+4. Gradient Descent
+    - the computed gradients are used to update the weights and biases 
+    - the optimization algorithm determines the size and the direction of these updates 
+
+5. Repeat 
+
+Binary Cross-Entropy: 
+
+- Suppose we have two classes 0 and 1 
+
+ True Distribution: 
+    - The true distribution can be represented as a one-hot encoded vector: 
+        [1,0] for class 0, [0,1] for class 1 
+ Predicted Distribution: 
+    - p represents the predicted priobability of class 1
+    - The predicted distribution is [1-p, p]
+ Binary Cross-Entropy Loss: 
+    - negative(y * log(p) + (1+y)*log(1-p))
+
+
+
+Multi Class Cross-Entropy: 
+
+- Suppose we have multiple classes C 
+
+ True Distribution: 
+    - Y is one-hot encoded vector representing the true class
+ Prediction Distribution: 
+    - p is a vector of predicted probabilities for each class 
+ Categorical Cross-entropy Loss: 
+    - the categorical cross-entropy loss is defined as: 
+
+    negative(sum from i = 1 to C of yi * log(pi))
+
